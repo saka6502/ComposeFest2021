@@ -1,5 +1,6 @@
 package com.example.basiccodelabew2
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.example.basiccodelabew2.ui.theme.BasicCodelabeW2Theme
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.text.font.FontWeight
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +75,9 @@ fun Greeting(name: String) {
                     .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello,")
-                Text(text = "$name!")
+                Text(text = name, style = MaterialTheme.typography.h4.copy(
+                    fontWeight = FontWeight.ExtraBold
+                ))
             }
             OutlinedButton(onClick = {
                 expanded.value = !expanded.value
@@ -118,6 +122,14 @@ fun OnboardingPreview() {
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 fun DefaultPreview() {
+    BasicCodelabeW2Theme {
+        Greetings()
+    }
+}
+
+@Preview(showBackground = true, widthDp = 320, uiMode = UI_MODE_NIGHT_YES, name = "DefaultPreviewDark")
+@Composable
+fun DefaultPreviewDark() {
     BasicCodelabeW2Theme {
         Greetings()
     }
