@@ -12,6 +12,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -27,12 +30,43 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LayoutsJetPackComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    PhotographerCard()
-                }
+                LayoutCodelab()
             }
         }
+    }
+}
+
+@Composable
+fun LayoutCodelab() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = "LayoutsCodelab") },
+                actions = {
+                    IconButton(onClick = { }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = null)
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        BodyContent(Modifier.padding(innerPadding))
+    }
+}
+
+@Composable
+fun BodyContent(modifier: Modifier = Modifier) {
+    Column {
+        Text(text = "Hi there!", modifier = modifier)
+        Text(text = "Thanks for going through the Layouts codelab")
+    }
+}
+
+@Preview
+@Composable
+fun LayoutCodelabPreview() {
+    LayoutsJetPackComposeTheme {
+        LayoutCodelab()
     }
 }
 
@@ -71,18 +105,5 @@ fun PhotographerCard() {
 fun PhotographerCardPreview() {
     LayoutsJetPackComposeTheme {
         PhotographerCard()
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    LayoutsJetPackComposeTheme {
-        Greeting("Android")
     }
 }
